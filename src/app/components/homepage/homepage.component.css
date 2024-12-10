@@ -28,6 +28,7 @@
   
   .search-bar {
     width: 100%;
+    padding-top: 1em;
     max-width: 600px; /* Limit the maximum width */
     margin-left: 16px; /* Optional: space from the left edge */
   }
