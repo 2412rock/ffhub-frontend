@@ -1,0 +1,66 @@
+.app-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #202020; /* Dark theme background */
+    color: white;
+  }
+  
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center; /* Center the search bar */
+    align-items: center;
+    width: 100%; /* Allow the search container to take full width */
+    position: absolute;
+    left: 50%; /* Center the search bar horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 600px; /* Limit the maximum width */
+    margin-left: 16px; /* Optional: space from the left edge */
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-toolbar {
+    background-color: #202020;
+  }
+  
+  .mat-button {
+    color: #fff;
+  }
+  
+  .mat-icon {
+    color: #fff;
+  }
+  
+  .video-grid {
+    padding: 16px;
+    background-color: #181818;
+  }
+  
+  .mat-card {
+    background-color: #212121;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .mat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  }
+  

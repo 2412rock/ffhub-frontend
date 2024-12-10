@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="app-toolbar">
+    <span class="app-title">YouTube Clone</span>
+    <span class="spacer"></span>
+    <div class="search-container">
+      <mat-form-field class="search-bar" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchQuery"
+          [matAutocomplete]="auto"
+          (input)="onSearch()"
+        />
+        <button mat-icon-button matSuffix aria-label="Search" (click)="onSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+  
+        <!-- Display selected chips inside the search bar -->
+        <mat-chip-set class="chip-set" >
+          <mat-chip-row *ngFor="let chip of selectedVideos" (removed)="removeVideoFromSelected(chip)">
+            {{ chip.title }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip-row>
+        </mat-chip-set>
+      </mat-form-field>
+  
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let result of filteredVideos" (click)="addVideoToSelected(result)">
+          {{ result.title }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </mat-toolbar>
+  
+  <!-- Displaying video grid -->
+  <div class="video-grid">
+    <mat-grid-list cols="4" rowHeight="300px" gutterSize="16px">
+      <mat-grid-tile *ngFor="let video of filteredVideos">
+        <mat-card>
+          <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" />
+          <mat-card-content>
+            <h3>{{ video.title }}</h3>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  
