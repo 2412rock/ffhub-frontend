@@ -22,7 +22,7 @@ RUN ng build
 # Use a lightweight Nginx image as a parent image
 FROM nginx:alpine
 
-#COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 #copy certificates for https
 # COPY fullchain.pem /usr/share/certs/fullchain.pem 
@@ -32,7 +32,7 @@ FROM nginx:alpine
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
 # Expose port 80
-EXPOSE 8080
+EXPOSE 80
 
 # Start Nginx when the container starts
 CMD ["nginx", "-g", "daemon off;"]
