@@ -29,7 +29,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # COPY privatekey.pem /usr/share/certs/privatekey.pem 
 
 # Copy the built Angular app from the builder stage to the nginx web root directory
-COPY --from=builder /app/dist/browser/* /usr/share/nginx/html/
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80
