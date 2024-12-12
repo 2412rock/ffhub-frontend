@@ -55,7 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     background-color: #181818; /* Dark background */
     flex-direction: column;
   }
@@ -119,4 +119,13 @@
     color: #ccc;
     line-height: 1.6;
   }
-  
+   .tags{
+    display: flex;
+    flex-direction: row;
+   }
+
+   .tag{
+    background-color: gray;
+    margin-right: 1em;
+    padding: 0.3em;
+   }

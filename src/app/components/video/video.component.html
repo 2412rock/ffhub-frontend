@@ -2,33 +2,40 @@
     <span class="app-title">YouTube Clone</span>
     <span class="spacer"></span>
     <div class="search-container">
-      <mat-form-field class="search-bar" appearance="fill">
-        <mat-label>Search</mat-label>
-        <input matInput [(ngModel)]="searchQuery" [matAutocomplete]="auto" (input)="onSearch()" />
-        <button mat-icon-button matSuffix aria-label="Search" (click)="onSearch()">
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-  
-      <!-- Display selected chips inside the search bar -->
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let result of filteredVideos" (click)="addVideoToSelected(result)">
-          {{ result.title }}
-        </mat-option>
-      </mat-autocomplete>
+        <mat-form-field class="search-bar" appearance="fill">
+            <mat-label>Search</mat-label>
+            <input matInput [(ngModel)]="searchQuery" [matAutocomplete]="auto" (input)="onSearch()" />
+            <button mat-icon-button matSuffix aria-label="Search" (click)="onSearch()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <!-- Display selected chips inside the search bar -->
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let result of filteredVideos" (click)="addVideoToSelected(result)">
+                {{ result.title }}
+            </mat-option>
+        </mat-autocomplete>
     </div>
-  </mat-toolbar>
-  
-  <!-- Single Video Page -->
-  <div class="video-page">
-    <span>Video title</span>
-    <div class="video-container">
-      <div class="video-thumbnail-container">
-        <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" class="video-thumbnail" />
-        <button mat-icon-button class="play-button" (click)="playVideo()">
-          <mat-icon>play_arrow</mat-icon>
-        </button>
-      </div>
+</mat-toolbar>
+
+<!-- Single Video Page -->
+<div class="video-page">
+    <div style="height: fit-content; width: fit-content; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <span style="font-size: large; margin-top: 2em; margin-bottom: 1em;">Video title</span>
+        <div class="video-container">
+            <div class="video-thumbnail-container">
+                <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" class="video-thumbnail" />
+                <button mat-icon-button class="play-button" (click)="playVideo()">
+                    <mat-icon>play_arrow</mat-icon>
+                </button>
+            </div>
+        </div>
+        <span style="margin-top: 1em; margin-bottom: 0.5em;">Video tags</span>
+        <div class="tags">
+            <div class="tag" *ngFor="let tag of ['tag1', 'tag2', 'tag2', 'tag2', 'tag2']">
+                <span>{{tag}}</span>
+            </div>
+        </div>
     </div>
-  </div>
-  
+</div>
