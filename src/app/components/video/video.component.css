@@ -1,0 +1,122 @@
+/* Toolbar styles */
+.app-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #202020; /* Dark theme background */
+    color: white;
+  }
+  
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center; /* Center the search bar */
+    align-items: center;
+    width: 100%; /* Allow the search container to take full width */
+    position: absolute;
+    left: 50%; /* Center the search bar horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding-top: 1em;
+    max-width: 600px; /* Limit the maximum width */
+    margin-left: 16px; /* Optional: space from the left edge */
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-toolbar {
+    background-color: #202020;
+  }
+  
+  .mat-button {
+    color: #fff;
+  }
+  
+  .mat-icon {
+    color: #fff;
+  }
+  
+  /* Video page styles */
+  .video-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #181818; /* Dark background */
+    flex-direction: column;
+  }
+  
+  .video-container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    background-color: #212121; /* Dark background for the video container */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .play-button {
+    position: absolute;
+    font-size: 64px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 15px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  .play-button:hover {
+    opacity: 1;
+  }
+  
+  mat-card-content {
+    padding: 1rem;
+    background-color: #212121; /* Dark background for the content */
+    color: white;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: white;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+  }
+  

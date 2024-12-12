@@ -1,4 +1,34 @@
-<div>
-    <h2>Video ID: {{ videoId }}</h2>
-    <!-- <video controls [src]="videoUrl"></video> -->
+<mat-toolbar color="primary" class="app-toolbar">
+    <span class="app-title">YouTube Clone</span>
+    <span class="spacer"></span>
+    <div class="search-container">
+      <mat-form-field class="search-bar" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="searchQuery" [matAutocomplete]="auto" (input)="onSearch()" />
+        <button mat-icon-button matSuffix aria-label="Search" (click)="onSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+  
+      <!-- Display selected chips inside the search bar -->
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let result of filteredVideos" (click)="addVideoToSelected(result)">
+          {{ result.title }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </mat-toolbar>
+  
+  <!-- Single Video Page -->
+  <div class="video-page">
+    <span>Video title</span>
+    <div class="video-container">
+      <div class="video-thumbnail-container">
+        <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" class="video-thumbnail" />
+        <button mat-icon-button class="play-button" (click)="playVideo()">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
+  
