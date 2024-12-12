@@ -17,11 +17,13 @@ import { MatIconModule } from '@angular/material/icon'; // Search icon
 import { MatButtonModule } from '@angular/material/button'; // Search button
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { VideoComponent } from "./components/video/video.component";
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomepageComponent
+        HomepageComponent,
+        VideoComponent
     ],
     providers: [
         {
