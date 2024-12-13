@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
   searchQuery: string = '';
+  tags = ["dodo", "kek", "alo"];
+  filteredTags: string[] = [];
   videos = [
     { title: 'How to use Angular', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
     { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
@@ -16,28 +18,34 @@ export class HomepageComponent {
     // Add more video objects here
   ];
   filteredVideos = this.videos;
-  selectedVideos: any[] = []; 
+  selectedTags: string[] = []; 
 
+  getTags(startsWith:string){
+    this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
+  }
 
-  onSearch() {
-    if (this.searchQuery) {
-      this.filteredVideos = this.videos.filter((video) =>
-        video.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    } else {
-      this.filteredVideos = this.videos;
-    }
+  onSearch(): void {
+    this.getTags(this.searchQuery);
+  }
+
+  performSearch(da:any) {
+    // Perform search or redirect to a search results page
+    console.log('Search performed for:', this.searchQuery);
   }
 
   // Add selected video to selected list
-  addVideoToSelected(video: any): void {
-    if (!this.selectedVideos.includes(video)) {
-      this.selectedVideos.push(video);
+  addSelectedTag(tag: any): void {
+    console.log("add tag")
+    console.log(tag)
+    if (!this.selectedTags.includes(tag)) {
+      this.selectedTags.push(tag);
     }
   }
 
   // Remove selected video from selected list
-  removeVideoFromSelected(video: any): void {
-    this.selectedVideos = this.selectedVideos.filter((v) => v !== video);
+  removeVideoFromSelected(tag: any): void {
+    console.log("remove tag")
+    console.log(tag)
+    this.selectedTags = this.selectedTags.filter((v) => v !== tag);
   }
 }

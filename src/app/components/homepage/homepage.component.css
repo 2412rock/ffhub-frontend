@@ -65,3 +65,8 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
   }
   
+  .video-link {
+    text-decoration: none; /* Remove underlines */
+    color: inherit; /* Match parent color (inherit styles from mat-card) */
+    display: block; /* Make the entire card clickable */
+  }
