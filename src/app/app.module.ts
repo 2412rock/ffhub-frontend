@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button'; // Search button
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { VideoComponent } from "./components/video/video.component";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
     declarations: [
@@ -56,7 +58,8 @@ import { VideoComponent } from "./components/video/video.component";
         MatIconModule,
         MatButtonModule,
         MatAutocompleteModule,
-        MatChipsModule
+        MatChipsModule,
+        MatProgressSpinnerModule
 
     ]
 })

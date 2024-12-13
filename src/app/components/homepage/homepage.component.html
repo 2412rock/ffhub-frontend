@@ -16,7 +16,7 @@
     mat-icon-button 
     matSuffix 
     aria-label="Search" 
-    (click)="performSearch($event)">
+    (click)="performSearch()">
     <mat-icon>search</mat-icon>
   </button>
     <mat-autocomplete #auto="matAutocomplete">
@@ -29,26 +29,31 @@
 
 <!-- Displaying video grid -->
 <div class="video-grid">
-  <div style="width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 1em;">
-    <span *ngIf="selectedTags.length > 0" style="font-size: large;margin-right: 1em;">Selected tags: </span>
-    <mat-chip-set class="chip-set">
-      <mat-chip-row *ngFor="let chip of selectedTags" (removed)="removeVideoFromSelected(chip)">
-        {{ chip }}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip-row>
-    </mat-chip-set>
+  <div *ngIf="!loading">
+    <div style="width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 1em;">
+      <span *ngIf="selectedTags.length > 0" style="font-size: large;margin-right: 1em;">Selected tags: </span>
+      <mat-chip-set class="chip-set">
+        <mat-chip-row *ngFor="let chip of selectedTags" (removed)="removeVideoFromSelected(chip)">
+          {{ chip }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip-row>
+      </mat-chip-set>
+    </div>
+    <mat-grid-list cols="4" rowHeight="300px" gutterSize="16px">
+      <mat-grid-tile *ngFor="let video of filteredVideos">
+        <a [routerLink]="['/video', '123']" target="_blank" class="video-link">
+          <mat-card>
+            <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" />
+            <mat-card-content>
+              <h3>{{ video.title }}</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+      
+    </mat-grid-list>
   </div>
-  <mat-grid-list cols="4" rowHeight="300px" gutterSize="16px">
-    <mat-grid-tile *ngFor="let video of filteredVideos">
-      <a [routerLink]="['/video', '123']" target="_blank" class="video-link">
-        <mat-card>
-          <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" />
-          <mat-card-content>
-            <h3>{{ video.title }}</h3>
-          </mat-card-content>
-        </mat-card>
-      </a>
-    </mat-grid-tile>
-    
-  </mat-grid-list>
+  <div *ngIf="loading" style="width: 100%; height: 50vh; display: flex; align-items: center; justify-content: center;">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

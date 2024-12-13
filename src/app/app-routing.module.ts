@@ -4,9 +4,9 @@ import { HomepageComponent } from "./components/homepage/homepage.component";
 import { VideoComponent } from "./components/video/video.component";
 
 const routes: Routes = [
-    { path: '', component: HomepageComponent },
+    { path: 'home', component: HomepageComponent },
     { path: 'video/:id', component: VideoComponent }, 
-    { path: '**', redirectTo: '' },
+    { path: '**', redirectTo: 'home' },
   ];
   
   @NgModule({

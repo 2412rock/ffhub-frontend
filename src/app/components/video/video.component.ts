@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-video',
@@ -16,6 +16,8 @@ export class VideoComponent {
     videoUrl: 'https://www.youtube.com/watch?v=VIDEO_ID'
   };
   searchQuery: string = '';
+  tags = ["dodo", "kek", "alo"];
+  filteredTags: string[] = [];
   videos = [
     { title: 'How to use Angular', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
     { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
@@ -25,9 +27,9 @@ export class VideoComponent {
     // Add more video objects here
   ];
   filteredVideos = this.videos;
-  selectedVideos: any[] = []; 
+  selectedTags: string[] = []; 
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.videoId = this.route.snapshot.paramMap.get('id')!;
@@ -49,14 +51,37 @@ export class VideoComponent {
     window.open(this.video.videoUrl, '_blank');
   }
 
-  onSearch() {
-    // Implement search logic
+  goHome(){
+    console.log("go home")
+    this.router.navigate(['./home'])
   }
 
-   // Add selected video to selected list
-   addVideoToSelected(video: any): void {
-    if (!this.selectedVideos.includes(video)) {
-      this.selectedVideos.push(video);
+  getTags(startsWith:string){
+    this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
+  }
+
+  onSearch(): void {
+    this.getTags(this.searchQuery);
+  }
+
+  performSearch(da:any) {
+    // Perform search or redirect to a search results page
+    console.log('Search performed for:', this.searchQuery);
+  }
+
+  // Add selected video to selected list
+  addSelectedTag(tag: any): void {
+    console.log("add tag")
+    console.log(tag)
+    if (!this.selectedTags.includes(tag)) {
+      this.selectedTags.push(tag);
     }
+  }
+
+  // Remove selected video from selected list
+  removeVideoFromSelected(tag: any): void {
+    console.log("remove tag")
+    console.log(tag)
+    this.selectedTags = this.selectedTags.filter((v) => v !== tag);
   }
 }

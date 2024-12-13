@@ -9,6 +9,7 @@ export class HomepageComponent {
   searchQuery: string = '';
   tags = ["dodo", "kek", "alo"];
   filteredTags: string[] = [];
+  loading = false;
   videos = [
     { title: 'How to use Angular', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
     { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
@@ -28,9 +29,12 @@ export class HomepageComponent {
     this.getTags(this.searchQuery);
   }
 
-  performSearch(da:any) {
+  performSearch() {
+    console.log("searching for video with tags")
+    this.loading = true;
+    this.videos = this.videos;
+    this.loading = false;
     // Perform search or redirect to a search results page
-    console.log('Search performed for:', this.searchQuery);
   }
 
   // Add selected video to selected list
