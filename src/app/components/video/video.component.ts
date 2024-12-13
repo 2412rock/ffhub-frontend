@@ -28,6 +28,7 @@ export class VideoComponent {
   ];
   filteredVideos = this.videos;
   selectedTags: string[] = []; 
+  loading = false;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -67,6 +68,7 @@ export class VideoComponent {
   performSearch(da:any) {
     // Perform search or redirect to a search results page
     console.log('Search performed for:', this.searchQuery);
+    this.router.navigate(['./home'], { queryParams: { tags: this.selectedTags }})
   }
 
   // Add selected video to selected list
