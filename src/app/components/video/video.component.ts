@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-video',
@@ -30,7 +31,7 @@ export class VideoComponent {
   selectedTags: string[] = []; 
   loading = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private modalService: ModalService) {}
 
   ngOnInit(): void {
     this.videoId = this.route.snapshot.paramMap.get('id')!;
@@ -85,5 +86,9 @@ export class VideoComponent {
     console.log("remove tag")
     console.log(tag)
     this.selectedTags = this.selectedTags.filter((v) => v !== tag);
+  }
+
+  addVideo(){
+    this.modalService.openAddVideoModal();
   }
 }

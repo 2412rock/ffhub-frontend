@@ -1,0 +1,13 @@
+<mat-dialog-content class="dialog-content">
+    <div class="icon">
+        <i *ngIf="data.success" class="fa-solid fa-check" style="color: green; font-size: 5em;"></i>
+        <i *ngIf="!data.success" class="fa-solid fa-xmark" style="color: red; font-size: 5em;"></i>
+    </div>
+    
+    <div class="message">
+      <h2 *ngIf="data.success" style="color: green;">Success</h2>
+      <h2 *ngIf="!data.success" style="color: red;">Error</h2>
+      <p>{{ data.message }}</p>
+    </div>
+  </mat-dialog-content>
+  

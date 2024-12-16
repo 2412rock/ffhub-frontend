@@ -1,0 +1,20 @@
+.dialog-content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .success-icon mat-icon {
+    font-size: 50px;
+    color: green; /* Green color for the checkmark */
+  }
+  
+  .message h2 {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #4caf50; /* Green color for the success text */
+  }
+  
+  .message p {
+    color: white;
+  }
+  

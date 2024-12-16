@@ -21,6 +21,7 @@ import { VideoComponent } from "./components/video/video.component";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddVideoModalComponent } from "./components/modals/add-video-modal/add-video-modal.component";
+import { NotificationModalComponent } from "./components/modals/notification-modal/notification-modal.component";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AddVideoModalComponent } from "./components/modals/add-video-modal/add-
         AppComponent,
         HomepageComponent,
         VideoComponent,
-        AddVideoModalComponent
+        AddVideoModalComponent,
+        NotificationModalComponent
     ],
     providers: [
         {
