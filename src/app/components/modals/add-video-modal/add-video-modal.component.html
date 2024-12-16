@@ -1,0 +1,56 @@
+<div>
+    <div class="add-item-form" style="display: flex; flex-direction: column;">
+        <mat-card>
+          <mat-card-title style="padding: 1em;">Submit New Item</mat-card-title>
+          <mat-card-content>
+            <!-- Title Input -->
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Title</mat-label>
+              <input matInput [(ngModel)]="title" />
+            </mat-form-field>
+      
+            <!-- Link Input -->
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Link</mat-label>
+              <input matInput [(ngModel)]="link" />
+            </mat-form-field>
+      
+            <!-- Tags with Search Bar -->
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Search Tags</mat-label>
+              <input
+                matInput
+                [(ngModel)]="searchTag"
+                (input)="filterTags()"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let tag of filteredTags"
+                  (click)="addTag(tag)"
+                >
+                  {{ tag }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+      
+            <!-- Selected Tags -->
+            <div>
+                <mat-chip-set class="chip-set">
+                    <mat-chip-row *ngFor="let chip of selectedTags" (removed)="removeVideoFromSelected(chip)">
+                      {{ chip }}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip-row>
+                  </mat-chip-set>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button *ngIf="!loading" mat-raised-button color="primary" (click)="submit()">Submit</button>
+            <div *ngIf="loading" style="width: 2em; height: 2em; display: flex; align-items: center; justify-content: center; margin-left: 1em;">
+                <mat-spinner></mat-spinner>
+              </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-homepage',
@@ -20,6 +21,10 @@ export class HomepageComponent {
   ];
   filteredVideos = this.videos;
   selectedTags: string[] = []; 
+
+  constructor(private modalService: ModalService){
+
+  }
 
   getTags(startsWith:string){
     this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
@@ -51,5 +56,9 @@ export class HomepageComponent {
     console.log("remove tag")
     console.log(tag)
     this.selectedTags = this.selectedTags.filter((v) => v !== tag);
+  }
+
+  addVideo(){
+    this.modalService.openAddVideoModal();
   }
 }

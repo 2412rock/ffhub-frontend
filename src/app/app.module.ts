@@ -19,13 +19,16 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { VideoComponent } from "./components/video/video.component";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddVideoModalComponent } from "./components/modals/add-video-modal/add-video-modal.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HomepageComponent,
-        VideoComponent
+        VideoComponent,
+        AddVideoModalComponent
     ],
     providers: [
         {
@@ -59,7 +62,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatButtonModule,
         MatAutocompleteModule,
         MatChipsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule
 
     ]
 })
