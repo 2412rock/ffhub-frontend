@@ -21,6 +21,7 @@ export class VideoComponent implements OnInit {
   loading = false;
   title: string = "";
   videoTags: string[];
+  show404 = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private modalService: ModalService, private dataService: DataService) {}
 
@@ -32,6 +33,9 @@ export class VideoComponent implements OnInit {
       this.title = result.data.title;
       this.videoTags = result.data.tags;
       this.thumbnail = result.data.thumbNail;
+    }
+    else{
+      this.show404 = true;
     }
   }
 
