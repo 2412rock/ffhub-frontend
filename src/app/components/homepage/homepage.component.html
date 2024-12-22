@@ -21,7 +21,7 @@
   </button>
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let result of filteredTags" (click)="addSelectedTag(result)">
-        {{ result }}
+        {{ result.tagName }}
       </mat-option>
     </mat-autocomplete>
   </div>
@@ -38,7 +38,7 @@
       <span *ngIf="selectedTags.length > 0" style="font-size: large;margin-right: 1em;">Selected tags: </span>
       <mat-chip-set class="chip-set">
         <mat-chip-row *ngFor="let chip of selectedTags" (removed)="removeVideoFromSelected(chip)">
-          {{ chip }}
+          {{ chip.tagName }}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip-row>
       </mat-chip-set>

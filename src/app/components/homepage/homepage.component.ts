@@ -3,6 +3,7 @@ import { ModalService } from '../../services/modal.service';
 import { DataService } from '../../services/data.service';
 import { firstValueFrom } from 'rxjs';
 import { VideoAndTags } from '../../models/response/videoandtags';
+import { Tag } from '../../models/response/tag';
 
 @Component({
   selector: 'app-homepage',
@@ -12,13 +13,13 @@ import { VideoAndTags } from '../../models/response/videoandtags';
 export class HomepageComponent implements OnInit {
   searchQuery: string = '';
   tags = ["dodo", "kek", "alo"];
-  filteredTags: string[] = [];
+  filteredTags: Tag[] = [];
   loading = false;
   
 
   videos: VideoAndTags[];
   //filteredVideos = this.videos;
-  selectedTags: string[] = []; 
+  selectedTags: Tag[] = []; 
 
   constructor(private modalService: ModalService, private dataService: DataService){
 
@@ -40,27 +41,37 @@ export class HomepageComponent implements OnInit {
 
   }
 
-  getTags(startsWith:string){
-    this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
+  async getTags(startsWith:string){
+    let result = await firstValueFrom(this.dataService.getTags(startsWith));
+    if(result.isSuccess){
+      this.filteredTags = result.data;
+    }
+   // this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
   }
 
   onSearch(): void {
     this.getTags(this.searchQuery);
   }
 
-  performSearch() {
+  async performSearch() {
     console.log("searching for video with tags")
     this.loading = true;
-    this.videos = this.videos;
+    let tags: number[] = [];
+    this.selectedTags.forEach(e => {
+      tags.push(e.tagId);
+    })
+    let result = await firstValueFrom(this.dataService.getVideos(tags));
+    if(result.isSuccess){
+      this.videos = result.data;
+    }
     this.loading = false;
     // Perform search or redirect to a search results page
   }
 
   // Add selected video to selected list
-  addSelectedTag(tag: any): void {
-    console.log("add tag")
-    console.log(tag)
-    if (!this.selectedTags.includes(tag)) {
+  addSelectedTag(tag: Tag): void {
+    let filterResult = this.selectedTags.filter(e => e.tagId === tag.tagId);
+    if(filterResult.length === 0){
       this.selectedTags.push(tag);
     }
   }

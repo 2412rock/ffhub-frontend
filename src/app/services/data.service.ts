@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Maybe } from '../models/response/maybe';
 import { VideoAndTags } from '../models/response/videoandtags';
 import { UrlService } from './url.service';
+import { Tag } from '../models/response/tag';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class DataService {
   
   getVideo(id: number): Observable<Maybe<VideoAndTags>>{
     return this.http.get<Maybe<VideoAndTags>>(`${this.urlService.getHttpBaseUrl()}/api/video?id=${id}`);
+  }
+
+  getTags(startsWith: string){
+    return this.http.get<Maybe<Tag[]>>(`${this.urlService.getHttpBaseUrl()}/api/tags?query=${startsWith}`);
   }
 }
