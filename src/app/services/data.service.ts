@@ -36,4 +36,15 @@ export class DataService {
   getTags(startsWith: string){
     return this.http.get<Maybe<Tag[]>>(`${this.urlService.getHttpBaseUrl()}/api/tags?query=${startsWith}`);
   }
+
+  suggestVideo(req: SuggestVideoReq){
+    return this.http.post<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/suggest`, req);
+  }
+}
+
+
+export class SuggestVideoReq{
+  public link: string;
+  public title: string;
+  public tags: string[];
 }

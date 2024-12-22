@@ -16,10 +16,7 @@ export class HomepageComponent implements OnInit {
   tags = ["dodo", "kek", "alo"];
   filteredTags: Tag[] = [];
   loading = false;
-
-
   videos: VideoAndTags[];
-  //filteredVideos = this.videos;
   selectedTags: Tag[] = [];
 
   constructor(private modalService: ModalService, private dataService: DataService, private route: ActivatedRoute) {
