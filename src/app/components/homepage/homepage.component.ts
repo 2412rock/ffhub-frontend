@@ -4,6 +4,7 @@ import { DataService } from '../../services/data.service';
 import { firstValueFrom } from 'rxjs';
 import { VideoAndTags } from '../../models/response/videoandtags';
 import { Tag } from '../../models/response/tag';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -15,38 +16,56 @@ export class HomepageComponent implements OnInit {
   tags = ["dodo", "kek", "alo"];
   filteredTags: Tag[] = [];
   loading = false;
-  
+
 
   videos: VideoAndTags[];
   //filteredVideos = this.videos;
-  selectedTags: Tag[] = []; 
+  selectedTags: Tag[] = [];
 
-  constructor(private modalService: ModalService, private dataService: DataService){
+  constructor(private modalService: ModalService, private dataService: DataService, private route: ActivatedRoute) {
 
   }
   async ngOnInit() {
-    let response = await firstValueFrom(this.dataService.getVideos(null));
+    const params = this.route.snapshot.queryParams;
+    if (params['query']) {
+      // Handle query parameter logic here
+      if (typeof (params['query']) === 'object') {
+        let query = params['query'] as string[];
 
-    if(response.isSuccess){
-      this.videos = response.data;
-      // this.videos = [
-      //   { title: 'How to use Angular', thumbnail: 'https://imgv3.fotor.com/images/videoImage/create-various-bridal-shower-invitation-with-fotor-copy.jpg' },
-      //   { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-      //   { title: 'Building a YouTube Clone', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-      //   { title: 'Angular Material Tutorial', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-      //   { title: 'Learn Web Development', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-      //   // Add more video objects here
-      // ];
+        let tags: number[] = []
+        query.forEach(e => {
+          tags.push(Number(e));
+        })
+
+        let result = await firstValueFrom(this.dataService.getVideos(tags));
+        if (result.isSuccess) {
+          this.videos = result.data;
+        }
+      }
+      else if (typeof (params['query']) === 'string') {
+        let tag = params['query'];
+        let tags: number[] = [Number(tag)]
+
+        let result = await firstValueFrom(this.dataService.getVideos(tags));
+        if (result.isSuccess) {
+          this.videos = result.data;
+        }
+      }
+
+    } else {
+      // Execute the code only if there are no query params
+      let response = await firstValueFrom(this.dataService.getVideos(null));
+      if (response.isSuccess) {
+        this.videos = response.data;
+      }
     }
-
   }
 
-  async getTags(startsWith:string){
+  async getTags(startsWith: string) {
     let result = await firstValueFrom(this.dataService.getTags(startsWith));
-    if(result.isSuccess){
+    if (result.isSuccess) {
       this.filteredTags = result.data;
     }
-   // this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
   }
 
   onSearch(): void {
@@ -61,7 +80,7 @@ export class HomepageComponent implements OnInit {
       tags.push(e.tagId);
     })
     let result = await firstValueFrom(this.dataService.getVideos(tags));
-    if(result.isSuccess){
+    if (result.isSuccess) {
       this.videos = result.data;
     }
     this.loading = false;
@@ -71,7 +90,7 @@ export class HomepageComponent implements OnInit {
   // Add selected video to selected list
   addSelectedTag(tag: Tag): void {
     let filterResult = this.selectedTags.filter(e => e.tagId === tag.tagId);
-    if(filterResult.length === 0){
+    if (filterResult.length === 0) {
       this.selectedTags.push(tag);
     }
   }
@@ -83,7 +102,7 @@ export class HomepageComponent implements OnInit {
     this.selectedTags = this.selectedTags.filter((v) => v !== tag);
   }
 
-  addVideo(){
+  addVideo() {
     this.modalService.openAddVideoModal();
   }
 }

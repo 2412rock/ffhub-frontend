@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
 import { DataService } from '../../services/data.service';
 import { firstValueFrom } from 'rxjs';
+import { Tag } from '../../models/response/tag';
 
 @Component({
   selector: 'app-video',
@@ -14,9 +15,9 @@ export class VideoComponent implements OnInit {
   videoUrl!: string;
   thumbnail: string = "";
   searchQuery: string = '';
-  tags = ["dodo", "kek", "alo"];
-  filteredTags: string[] = [];
-  selectedTags: string[] = []; 
+
+  filteredTags: Tag[] = [];
+  selectedTags: Tag[] = []; 
   loading = false;
   title: string = "";
   videoTags: string[];
@@ -43,8 +44,11 @@ export class VideoComponent implements OnInit {
     this.router.navigate(['./home'])
   }
 
-  getTags(startsWith:string){
-    this.filteredTags = this.tags.filter(tag =>tag.toLowerCase().includes(startsWith));
+  async getTags(startsWith:string){
+    let result = await firstValueFrom(this.dataService.getTags(startsWith));
+    if(result.isSuccess){
+      this.filteredTags = result.data;
+    }
   }
 
   onSearch(): void {
@@ -52,9 +56,13 @@ export class VideoComponent implements OnInit {
   }
 
   performSearch(da:any) {
-    // Perform search or redirect to a search results page
-    console.log('Search performed for:', this.searchQuery);
-    this.router.navigate(['./home'], { queryParams: { tags: this.selectedTags }})
+    let tags: number[] = [];
+    this.selectedTags.forEach(e => {
+      tags.push(e.tagId);
+    })
+    this.router.navigate(['./home'], {queryParams: {
+      query: tags
+    }})
   }
 
   // Add selected video to selected list
