@@ -27,4 +27,8 @@ export class DataService {
     }
     return this.http.get<Maybe<VideoAndTags[]>>(url);
   }
+  
+  getVideo(id: number): Observable<Maybe<VideoAndTags>>{
+    return this.http.get<Maybe<VideoAndTags>>(`${this.urlService.getHttpBaseUrl()}/api/video?id=${id}`);
+  }
 }

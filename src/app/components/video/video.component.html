@@ -43,10 +43,10 @@
         </mat-chip-set>
       </div>
     <div style="height: fit-content; width: fit-content; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <span style="font-size: large; margin-top: 2em; margin-bottom: 1em;">Video title</span>
+        <span style="font-size: large; margin-top: 2em; margin-bottom: 1em;">{{title}}</span>
         <div class="video-container">
             <div class="video-thumbnail-container">
-                <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" class="video-thumbnail" />
+                <img mat-card-image [src]="thumbnail" alt="Video thumbnail" class="video-thumbnail" />
                 <button mat-icon-button class="play-button" (click)="playVideo()">
                     <mat-icon>play_arrow</mat-icon>
                 </button>
@@ -54,7 +54,7 @@
         </div>
         <span style="margin-top: 1em; margin-bottom: 0.5em;">Video tags</span>
         <div class="tags">
-            <div class="tag" *ngFor="let tag of ['tag1', 'tag2', 'tag2', 'tag2', 'tag2']">
+            <div class="tag" *ngFor="let tag of videoTags">
                 <span>{{tag}}</span>
             </div>
         </div>

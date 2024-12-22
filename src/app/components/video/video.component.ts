@@ -1,56 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
+import { DataService } from '../../services/data.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
   styleUrl: './video.component.css'
 })
-export class VideoComponent {
+export class VideoComponent implements OnInit {
   videoId!: string;
   videoUrl!: string;
-  video: any = {
-    title: 'Sample Video',
-    description: 'This is a description of the sample video.',
-    thumbnail: 'https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=VIDEO_ID'
-  };
+  thumbnail: string = "";
   searchQuery: string = '';
   tags = ["dodo", "kek", "alo"];
   filteredTags: string[] = [];
-  videos = [
-    { title: 'How to use Angular', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Building a YouTube Clone', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Angular Material Tutorial', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Learn Web Development', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    // Add more video objects here
-  ];
-  filteredVideos = this.videos;
   selectedTags: string[] = []; 
   loading = false;
+  title: string = "";
+  videoTags: string[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private modalService: ModalService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private modalService: ModalService, private dataService: DataService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.videoId = this.route.snapshot.paramMap.get('id')!;
-    this.videoUrl = `https://my-video-storage.com/videos/${this.videoId}.mp4`;
-  }
-
-  loadVideo(videoId: string) {
-    // Here, you can fetch video data based on the videoId from your backend
-    // For now, it's mocked
-    this.video = {
-      title: `Video ${videoId}`,
-      description: `This is a description of video ${videoId}.`,
-      thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-      videoUrl: `https://www.youtube.com/watch?v=${videoId}`
-    };
+    let result = await firstValueFrom(this.dataService.getVideo(Number(this.videoId)));
+    if(result.isSuccess){
+      this.videoUrl = result.data.link;
+      this.title = result.data.title;
+      this.videoTags = result.data.tags;
+      this.thumbnail = result.data.thumbNail;
+    }
   }
 
   playVideo() {
-    window.open(this.video.videoUrl, '_blank');
+    window.open(this.videoUrl, '_blank');
   }
 
   goHome(){
