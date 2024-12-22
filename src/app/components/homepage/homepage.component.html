@@ -44,10 +44,10 @@
       </mat-chip-set>
     </div>
     <mat-grid-list cols="4" rowHeight="300px" gutterSize="16px">
-      <mat-grid-tile *ngFor="let video of filteredVideos">
-        <a [routerLink]="['/video', '123']" target="_blank" class="video-link">
+      <mat-grid-tile *ngFor="let video of videos">
+        <a [routerLink]="['/video', video.videoId]" target="_blank" class="video-link">
           <mat-card>
-            <img mat-card-image [src]="video.thumbnail" alt="Video thumbnail" />
+            <img mat-card-image [src]="video.thumbNail" alt="Video thumbnail" style="width: 25em; height: 20em;" />
             <mat-card-content>
               <h3>{{ video.title }}</h3>
             </mat-card-content>

@@ -1,28 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
+import { DataService } from '../../services/data.service';
+import { firstValueFrom } from 'rxjs';
+import { VideoAndTags } from '../../models/response/videoandtags';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
   searchQuery: string = '';
   tags = ["dodo", "kek", "alo"];
   filteredTags: string[] = [];
   loading = false;
-  videos = [
-    { title: 'How to use Angular', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Building a YouTube Clone', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Angular Material Tutorial', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    { title: 'Learn Web Development', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
-    // Add more video objects here
-  ];
-  filteredVideos = this.videos;
+  
+
+  videos: VideoAndTags[];
+  //filteredVideos = this.videos;
   selectedTags: string[] = []; 
 
-  constructor(private modalService: ModalService){
+  constructor(private modalService: ModalService, private dataService: DataService){
+
+  }
+  async ngOnInit() {
+    let response = await firstValueFrom(this.dataService.getVideos(null));
+
+    if(response.isSuccess){
+      this.videos = response.data;
+      // this.videos = [
+      //   { title: 'How to use Angular', thumbnail: 'https://imgv3.fotor.com/images/videoImage/create-various-bridal-shower-invitation-with-fotor-copy.jpg' },
+      //   { title: 'Understanding TypeScript', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
+      //   { title: 'Building a YouTube Clone', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
+      //   { title: 'Angular Material Tutorial', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
+      //   { title: 'Learn Web Development', thumbnail: 'https://via.placeholder.com/400x300.png?text=Video+1' },
+      //   // Add more video objects here
+      // ];
+    }
 
   }
 
