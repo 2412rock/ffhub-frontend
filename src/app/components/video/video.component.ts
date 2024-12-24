@@ -107,6 +107,7 @@ export class VideoComponent implements OnInit {
       let comment = new Comment();
       comment.commentText = this.commentText;
       this.comments.push(comment)
+      this.commentText = "";
     }
   }
 }

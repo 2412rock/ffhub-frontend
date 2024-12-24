@@ -46,7 +46,7 @@
         </div>
       </div>
       <span style="margin-top: 1em; margin-bottom: 0.5em;">Video tags</span>
-      <div class="tags">
+      <div class="tags" style="margin-bottom: 2em;">
         <div class="tag" *ngFor="let tag of videoTags">
           <span>{{tag}}</span>
         </div>
@@ -55,19 +55,19 @@
     <div class="input-container" style="width: 100%;">
       <mat-form-field appearance="outline" class="input-field" style="width: 85%;">
         <mat-label>Comment</mat-label>
-        <input matInput [(ngModel)]="commentText"/>
+        <input matInput [(ngModel)]="commentText" />
       </mat-form-field>
-      <button mat-raised-button (click)="postComment()" color="primary" class="input-button" style="margin-left: 1em;">Submit</button>
+      <button mat-raised-button (click)="postComment()" color="primary" class="input-button"
+        style="margin-left: 1em;">Submit</button>
     </div>
     <div>
       <h3 mat-subheader>Comments</h3>
-      <div *ngFor="let comment of comments" style="border: grey solid 1px; margin-bottom: 1em; max-width: 45vw; padding: 1em;">
+      <div *ngFor="let comment of comments"
+        style="border: grey solid 1px; margin-bottom: 1em; max-width: 45vw; padding: 1em;">
         <!-- <mat-icon matListIcon>comment</mat-icon> -->
         <div mat-line tyle="white-space: normal; word-wrap: break-word;">{{ comment.commentText }}</div>
-      <div>
       </div>
-  
-    
+    </div>
   </div>
   <div *ngIf="show404">
     <h1>404 Video not found</h1>
