@@ -4,6 +4,7 @@ import { ModalService } from '../../services/modal.service';
 import { DataService } from '../../services/data.service';
 import { firstValueFrom } from 'rxjs';
 import { Tag } from '../../models/response/tag';
+import { CommentService, Comment, PostCommentReq } from '../../services/comment.service';
 
 @Component({
   selector: 'app-video',
@@ -22,8 +23,12 @@ export class VideoComponent implements OnInit {
   title: string = "";
   videoTags: string[];
   show404 = false;
+  commentText = "";
+  comments: Comment[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private modalService: ModalService, private dataService: DataService) {}
+  constructor(private route: ActivatedRoute, private router: Router, 
+    private modalService: ModalService, private dataService: DataService,
+    private commentsService: CommentService) {}
 
   async ngOnInit() {
     this.videoId = this.route.snapshot.paramMap.get('id')!;
@@ -36,6 +41,10 @@ export class VideoComponent implements OnInit {
     }
     else{
       this.show404 = true;
+    }
+    let commentsResult = await firstValueFrom(this.commentsService.getComments(Number(this.videoId)));
+    if(commentsResult.isSuccess){
+      this.comments = commentsResult.data;
     }
   }
 
@@ -87,5 +96,17 @@ export class VideoComponent implements OnInit {
 
   addVideo(){
     this.modalService.openAddVideoModal();
+  }
+
+  async postComment(){
+    let req = new PostCommentReq();
+    req.videoId = Number(this.videoId);
+    req.commentText = this.commentText;
+    let result = await firstValueFrom(this.commentsService.postComment(req));
+    if(result.isSuccess){
+      let comment = new Comment();
+      comment.commentText = this.commentText;
+      this.comments.push(comment)
+    }
   }
 }

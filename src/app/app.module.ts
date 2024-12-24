@@ -22,7 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddVideoModalComponent } from "./components/modals/add-video-modal/add-video-modal.component";
 import { NotificationModalComponent } from "./components/modals/notification-modal/notification-modal.component";
-
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
     declarations: [
@@ -65,7 +65,8 @@ import { NotificationModalComponent } from "./components/modals/notification-mod
         MatAutocompleteModule,
         MatChipsModule,
         MatProgressSpinnerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatListModule
 
     ]
 })
