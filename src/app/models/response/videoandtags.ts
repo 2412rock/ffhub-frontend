@@ -4,4 +4,5 @@ export class VideoAndTags {
     public link: string;
     public thumbNail: string;
     public tags: string[];
+    public totalVideos: number;
 }

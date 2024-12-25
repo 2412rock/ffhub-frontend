@@ -13,7 +13,7 @@ export class DataService {
 
   constructor(private http: HttpClient, private urlService: UrlService) {   }
   
-  getVideos(tags: number[] | null): Observable<Maybe<VideoAndTags[]>>{
+  getVideos(tags: number[] | null, page: number): Observable<Maybe<VideoAndTags[]>>{
     let url: string;
     if(tags){
       let tagstr = "";
@@ -21,14 +21,30 @@ export class DataService {
         tagstr += e.toString() + ','
       });
       tagstr = tagstr.slice(0, -1);
-      url = `${this.urlService.getHttpBaseUrl()}/api/videos?tags=${tagstr}`
+      url = `${this.urlService.getHttpBaseUrl()}/api/videos?tags=${tagstr}&page=${page}`
     }
     else{
-      url = `${this.urlService.getHttpBaseUrl()}/api/videos`
+      url = `${this.urlService.getHttpBaseUrl()}/api/videos?page=${page}`
     }
     return this.http.get<Maybe<VideoAndTags[]>>(url);
   }
-  
+
+  getVideosCount(tags: number[] | null,): Observable<Maybe<number>>{
+    let url: string;
+    if(tags){
+      let tagstr = "";
+      tags.forEach(e => {
+        tagstr += e.toString() + ','
+      });
+      tagstr = tagstr.slice(0, -1);
+      url = `${this.urlService.getHttpBaseUrl()}/api/videosCount?tags=${tagstr}`
+    }
+    else{
+      url = `${this.urlService.getHttpBaseUrl()}/api/videosCount`
+    }
+    return this.http.get<Maybe<number>>(url);
+  }
+
   getVideo(id: number): Observable<Maybe<VideoAndTags>>{
     return this.http.get<Maybe<VideoAndTags>>(`${this.urlService.getHttpBaseUrl()}/api/video?id=${id}`);
   }

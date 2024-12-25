@@ -10,6 +10,8 @@
   .app-title {
     font-size: 1.5rem;
     font-weight: bold;
+    z-index: 100;
+    cursor: pointer;
   }
   
   .spacer {
@@ -70,3 +72,31 @@
     color: inherit; /* Match parent color (inherit styles from mat-card) */
     display: block; /* Make the entire card clickable */
   }
+
+  .paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .paginator button {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .paginator button.disabled,
+  .paginator button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .paginator button.active {
+    background: #3f51b5;
+    color: white;
+    border-color: #3f51b5;
+  }
+  

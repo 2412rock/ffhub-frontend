@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddVideoModalComponent } from "./components/modals/add-video-modal/add-video-modal.component";
 import { NotificationModalComponent } from "./components/modals/notification-modal/notification-modal.component";
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { MatListModule } from '@angular/material/list';
         MatChipsModule,
         MatProgressSpinnerModule,
         MatDialogModule,
-        MatListModule
+        MatListModule,
+        MatPaginatorModule
 
     ]
 })
