@@ -71,7 +71,7 @@
       <span style="color: white;">{{ page }}</span>
     </button>
   
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages || totalPages === 0">
       <span style="color: white;">Next &raquo;</span>
     </button>
   </div>
