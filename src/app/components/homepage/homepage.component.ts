@@ -39,6 +39,7 @@ export class HomepageComponent implements OnInit {
 
       await this.loadVideos();
     });
+    this.setMeta();
   }
 
   setMeta() {
