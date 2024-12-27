@@ -25,7 +25,7 @@
 <!-- Single Video Page -->
 <div class="video-page">
   <div *ngIf="!show404">
-    <div style="width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 1em;">
+    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1em;">
       <span *ngIf="selectedTags.length > 0" style="font-size: large;margin-right: 1em;">Selected tags: </span>
       <mat-chip-set class="chip-set">
         <mat-chip-row *ngFor="let chip of selectedTags" (removed)="removeVideoFromSelected(chip)">
@@ -63,7 +63,7 @@
     <div>
       <h3 mat-subheader>Comments</h3>
       <div *ngFor="let comment of comments"
-        style="border: grey solid 1px; margin-bottom: 1em; max-width: 45vw; padding: 1em;">
+        style="border: grey solid 1px; margin-bottom: 1em; max-width: 45vw; padding: 1em;word-wrap: break-word;">
         <!-- <mat-icon matListIcon>comment</mat-icon> -->
         <div mat-line tyle="white-space: normal; word-wrap: break-word;">{{ comment.commentText }}</div>
       </div>
