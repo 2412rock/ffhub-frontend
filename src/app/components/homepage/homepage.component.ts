@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { VideoAndTags } from '../../models/response/videoandtags';
 import { Tag } from '../../models/response/tag';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-homepage',
@@ -24,7 +25,8 @@ export class HomepageComponent implements OnInit {
   pagesNumbers: number[] = [];
   tagParams = '';
   constructor(private modalService: ModalService, private dataService: DataService,
-    private route: ActivatedRoute, private router: Router) {
+    private route: ActivatedRoute, private router: Router,
+    private meta: Meta, private pageTitle: Title) {
 
   }
   async ngOnInit() {
@@ -37,6 +39,17 @@ export class HomepageComponent implements OnInit {
 
       await this.loadVideos();
     });
+  }
+
+  setMeta() {
+    this.pageTitle.setTitle("Feet focused videos");
+    let tagsStr = "sneakers, socks, vans, converse, teen, feet, stockings, nylons, pantyhose";
+
+    this.meta.addTags([
+      { name: 'description', content: tagsStr },
+      { name: 'keywords', content: tagsStr },
+    ]);
+    this.meta.addTag({ rel: 'canonical', href: 'http://ffhub.co' });
   }
 
   async loadVideos() {
