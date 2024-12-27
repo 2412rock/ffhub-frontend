@@ -6,6 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { Tag } from '../../models/response/tag';
 import { CommentService, Comment, PostCommentReq } from '../../services/comment.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-video',
@@ -26,11 +27,13 @@ export class VideoComponent implements OnInit {
   show404 = false;
   commentText = "";
   comments: Comment[];
+  smallScreen = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
     private modalService: ModalService, private dataService: DataService,
     private commentsService: CommentService,
-    private meta: Meta, private pageTitle: Title) { }
+    private meta: Meta, private pageTitle: Title,
+    private breakpointObserver: BreakpointObserver) { }
 
   async ngOnInit() {
     this.videoId = this.route.snapshot.paramMap.get('id')!;
@@ -49,6 +52,29 @@ export class VideoComponent implements OnInit {
       this.comments = commentsResult.data;
     }
     this.setMeta();
+    this.resize();
+  }
+
+  resize(){
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall, // Extra small screens (e.g., phones)
+      Breakpoints.Small,  // Small screens (e.g., tablets)
+      Breakpoints.Medium, // Medium screens (e.g., small laptops)
+      Breakpoints.Large   // Large screens
+    ]).subscribe(result => {
+      console.log("Resize triggered")
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.smallScreen = true;
+        } else if (result.breakpoints[Breakpoints.Small]) {
+          this.smallScreen = true;
+        } else if (result.breakpoints[Breakpoints.Medium]) {
+          this.smallScreen = true;
+        } else {
+
+        }
+      }
+    });
   }
 
   setMeta() {

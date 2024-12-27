@@ -52,18 +52,17 @@
         </div>
       </div>
     </div>
-    <div class="input-container" style="width: 100%;">
-      <mat-form-field appearance="outline" class="input-field" style="width: 85%;">
+    <div class="input-container" [ngStyle]="{'width': smallScreen ? '90vw' : '40vw'}">
+      <mat-form-field appearance="outline" class="input-field" style="width: 85%; margin-right: 1em;">
         <mat-label>Comment</mat-label>
         <input matInput [(ngModel)]="commentText" />
       </mat-form-field>
-      <button mat-raised-button (click)="postComment()" color="primary" class="input-button"
-        style="margin-left: 1em;">Submit</button>
+      <button mat-raised-button (click)="postComment()" color="primary" class="input-button">Submit</button>
     </div>
-    <div>
+    <div [ngStyle]="{'width': smallScreen ? '90vw' : '40vw'}">
       <h3 mat-subheader>Comments</h3>
       <div *ngFor="let comment of comments"
-        style="border: grey solid 1px; margin-bottom: 1em; max-width: 45vw; padding: 1em;word-wrap: break-word;">
+        style="border: grey solid 1px; margin-bottom: 1em; padding: 1em;word-wrap: break-word;">
         <!-- <mat-icon matListIcon>comment</mat-icon> -->
         <div mat-line tyle="white-space: normal; word-wrap: break-word;">{{ comment.commentText }}</div>
       </div>
