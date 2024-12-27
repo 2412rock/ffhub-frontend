@@ -6,6 +6,7 @@ import { VideoAndTags } from '../../models/response/videoandtags';
 import { Tag } from '../../models/response/tag';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-homepage',
@@ -24,9 +25,12 @@ export class HomepageComponent implements OnInit {
   totalPages: number = 0;
   pagesNumbers: number[] = [];
   tagParams = '';
+  gridCols: number = 4; // Default columns
+
   constructor(private modalService: ModalService, private dataService: DataService,
     private route: ActivatedRoute, private router: Router,
-    private meta: Meta, private pageTitle: Title) {
+    private meta: Meta, private pageTitle: Title,
+    private breakpointObserver: BreakpointObserver) {
 
   }
   async ngOnInit() {
@@ -40,6 +44,29 @@ export class HomepageComponent implements OnInit {
       await this.loadVideos();
     });
     this.setMeta();
+    this.gridResize();
+  }
+
+  gridResize(){
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall, // Extra small screens (e.g., phones)
+      Breakpoints.Small,  // Small screens (e.g., tablets)
+      Breakpoints.Medium, // Medium screens (e.g., small laptops)
+      Breakpoints.Large   // Large screens
+    ]).subscribe(result => {
+      console.log("Resize triggered")
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.gridCols = 1; // 1 column on phones
+        } else if (result.breakpoints[Breakpoints.Small]) {
+          this.gridCols = 2; // 2 columns on small tablets
+        } else if (result.breakpoints[Breakpoints.Medium]) {
+          this.gridCols = 3; // 3 columns on small laptops
+        } else {
+          this.gridCols = 4; // 4 columns on large screens
+        }
+      }
+    });
   }
 
   setMeta() {

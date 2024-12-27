@@ -43,7 +43,7 @@
         </mat-chip-row>
       </mat-chip-set>
     </div>
-    <mat-grid-list cols="4" rowHeight="300px" gutterSize="16px">
+    <mat-grid-list [cols]="gridCols"  rowHeight="300px" gutterSize="16px">
       <mat-grid-tile *ngFor="let video of videos">
         <a [routerLink]="['/video', video.videoId]" target="_blank" class="video-link">
           <mat-card>
