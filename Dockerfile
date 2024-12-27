@@ -30,7 +30,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the built Angular app from the builder stage to the nginx web root directory
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
-
+COPY robots.txt /usr/share/nginx/html/browser/
+COPY sitemap.xml /usr/share/nginx/html/browser/
 # Expose port 80
 EXPOSE 80
 
