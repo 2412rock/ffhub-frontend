@@ -28,6 +28,7 @@ export class VideoComponent implements OnInit {
   commentText = "";
   comments: Comment[];
   smallScreen = false;
+  tagParams = '';
 
   constructor(private route: ActivatedRoute, private router: Router,
     private modalService: ModalService, private dataService: DataService,
@@ -97,6 +98,12 @@ export class VideoComponent implements OnInit {
     window.open(this.videoUrl, '_blank');
   }
 
+  
+  reloadPage() {
+    this.tagParams = "";
+    this.router.navigate(['/home'])
+  }
+
   goHome() {
     console.log("go home")
     this.router.navigate(['./home'])
@@ -113,16 +120,18 @@ export class VideoComponent implements OnInit {
     this.getTags(this.searchQuery);
   }
 
-  performSearch(da: any) {
-    let tags: number[] = [];
-    this.selectedTags.forEach(e => {
-      tags.push(e.tagId);
-    })
-    this.router.navigate(['./home'], {
-      queryParams: {
-        query: tags
-      }
-    })
+  async performSearch() {
+    if(this.selectedTags.length === 0){
+      this.router.navigate([`/home`]);
+      this.tagParams = "";
+      return;
+    }
+    let paramStr = "";
+    this.selectedTags.forEach(tag => {
+      paramStr += tag.tagId + ',';
+    });
+    paramStr = paramStr.slice(0, -1);
+    this.router.navigate([`/home`], {queryParams: {p:1, tag:paramStr}})
   }
 
   // Add selected video to selected list

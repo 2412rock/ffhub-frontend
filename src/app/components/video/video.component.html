@@ -1,27 +1,44 @@
-<!-- <mat-toolbar color="primary" class="app-toolbar">
-  <span (click)="goHome()" class="app-title">YouTube Clone</span>
+<div *ngIf="smallScreen" style="width: 100vw; display: flex; align-items: center; justify-content: center; margin-top: 2em; margin-bottom: 2em;">
+  <span (click)="reloadPage()" class="app-title">Ffhub</span>
+</div>
+<mat-toolbar color="primary" class="app-toolbar">
+  <span *ngIf="!smallScreen" (click)="reloadPage()" class="app-title">Ffhub</span>
   <span class="spacer"></span>
   <div class="search-container">
     <mat-form-field class="search-bar" appearance="fill">
       <mat-label>Search</mat-label>
-      <input matInput [(ngModel)]="searchQuery" [matAutocomplete]="auto" (input)="onSearch()" />
-
+      <input 
+        matInput 
+        [(ngModel)]="searchQuery" 
+        [matAutocomplete]="auto" 
+        (input)="onSearch()" 
+         />
+      
     </mat-form-field>
-    <button mat-icon-button matSuffix aria-label="Search" (click)="performSearch($event)">
-      <mat-icon>search</mat-icon>
-    </button>
+    <button 
+    mat-icon-button 
+    matSuffix 
+    aria-label="Search" 
+    (click)="performSearch()">
+    <mat-icon>search</mat-icon>
+  </button>
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let result of filteredTags" (click)="addSelectedTag(result)">
         {{ result.tagName }}
       </mat-option>
     </mat-autocomplete>
   </div>
+  <div *ngIf="!smallScreen" (click)="addVideo()" style="cursor: pointer; z-index: 100;">
+    <i class="fa-solid fa-plus" style="margin-right: 0.5em;"></i>
+    <span>Add video</span>
+  </div>
+</mat-toolbar>
+<div *ngIf="smallScreen" style="width: 100vw; display: flex; align-items: center; justify-content: center;  margin-top: 1em; margin-bottom: 1em;">
   <div (click)="addVideo()" style="cursor: pointer; z-index: 100;">
     <i class="fa-solid fa-plus" style="margin-right: 0.5em;"></i>
     <span>Add video</span>
   </div>
-</mat-toolbar> -->
-
+</div>
 <!-- Single Video Page -->
 <div class="video-page">
   <div *ngIf="!show404">
