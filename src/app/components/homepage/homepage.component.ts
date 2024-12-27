@@ -26,6 +26,7 @@ export class HomepageComponent implements OnInit {
   pagesNumbers: number[] = [];
   tagParams = '';
   gridCols: number = 4; // Default columns
+  smallScreen = false;
 
   constructor(private modalService: ModalService, private dataService: DataService,
     private route: ActivatedRoute, private router: Router,
@@ -58,8 +59,10 @@ export class HomepageComponent implements OnInit {
       if (result.matches) {
         if (result.breakpoints[Breakpoints.XSmall]) {
           this.gridCols = 1; // 1 column on phones
+          this.smallScreen = true;
         } else if (result.breakpoints[Breakpoints.Small]) {
           this.gridCols = 2; // 2 columns on small tablets
+          this.smallScreen = true;
         } else if (result.breakpoints[Breakpoints.Medium]) {
           this.gridCols = 3; // 3 columns on small laptops
         } else {

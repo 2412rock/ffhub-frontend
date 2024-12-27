@@ -1,5 +1,8 @@
-<mat-toolbar color="primary" class="app-toolbar">
+<div *ngIf="smallScreen" style="width: 100vw; display: flex; align-items: center; justify-content: center; margin-top: 2em; margin-bottom: 2em;">
   <span (click)="reloadPage()" class="app-title">Ffhub</span>
+</div>
+<mat-toolbar color="primary" class="app-toolbar">
+  <span *ngIf="!smallScreen" (click)="reloadPage()" class="app-title">Ffhub</span>
   <span class="spacer"></span>
   <div class="search-container">
     <mat-form-field class="search-bar" appearance="fill">
@@ -25,12 +28,17 @@
       </mat-option>
     </mat-autocomplete>
   </div>
-  <div (click)="addVideo()" style="cursor: pointer; z-index: 100;">
+  <div *ngIf="!smallScreen" (click)="addVideo()" style="cursor: pointer; z-index: 100;">
     <i class="fa-solid fa-plus" style="margin-right: 0.5em;"></i>
     <span>Add video</span>
   </div>
 </mat-toolbar>
-
+<div *ngIf="smallScreen" style="width: 100vw; display: flex; align-items: center; justify-content: center;  margin-top: 1em; margin-bottom: 1em;">
+  <div (click)="addVideo()" style="cursor: pointer; z-index: 100;">
+    <i class="fa-solid fa-plus" style="margin-right: 0.5em;"></i>
+    <span>Add video</span>
+  </div>
+</div>
 <!-- Displaying video grid -->
 <div class="video-grid">
   <div *ngIf="!loading">
