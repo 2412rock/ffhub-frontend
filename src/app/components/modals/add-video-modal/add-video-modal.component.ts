@@ -63,7 +63,7 @@ export class AddVideoModalComponent {
     this.loading = false;
     this.close();
     if(response.isSuccess){
-      this.modalService.openNotifactionModal(true, "Thank you for your video suggestion!");
+      this.modalService.openNotifactionModal(true, "Thank you for your video suggestion! A moderator will shortly review your suggestion");
     }
     else{
       this.modalService.openNotifactionModal(false, "Something went wrong " + response.exceptionMessage);
