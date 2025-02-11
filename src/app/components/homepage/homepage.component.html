@@ -53,15 +53,21 @@
     </div>
     <mat-grid-list [cols]="gridCols"  rowHeight="300px" gutterSize="16px">
       <mat-grid-tile *ngFor="let video of videos; let i = index">
-        <a [routerLink]="['/video', video.videoId]" target="_blank" class="video-link">
-          <mat-card>
-            <img mat-card-image [src]="video.thumbNail" alt="Video thumbnail" style="width: 25em; height: 20em;" />
-            <mat-card-content>
-              <h3>{{ video.title }}</h3>
-            </mat-card-content>
-          </mat-card>
-        </a>
-       
+        <div *ngIf="video.videoId != -1">
+          <a [routerLink]="['/video', video.videoId]" target="_blank" class="video-link">
+            <mat-card>
+              <img mat-card-image [src]="video.thumbNail" alt="Video thumbnail" style="width: 25em; height: 20em;" />
+              <mat-card-content>
+                <h3>{{ video.title }}</h3>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </div>
+        <mat-card *ngIf="video.videoId === -1">
+          <mat-card-content>
+            <app-homepage-ad></app-homepage-ad>
+          </mat-card-content>
+        </mat-card>
       
       </mat-grid-tile>
       

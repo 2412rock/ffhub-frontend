@@ -101,7 +101,23 @@ export class HomepageComponent implements OnInit {
 
     let result = await firstValueFrom(this.dataService.getVideos(tags.length === 0 ? null : tags, Number(this.currentPage)));
     if (result.isSuccess) {
-      this.videos = result.data;
+      this.videos = [];
+      let currentVideoIndex = 0;
+      for(let i = 0; i< result.data.length * 2; i++){
+        if(i % 2 === 0){
+          console.log("pushed video")
+          this.videos.push(result.data[currentVideoIndex]);
+          currentVideoIndex++;
+        }
+        else{
+          let obj = new VideoAndTags();
+          obj.videoId = -1;
+          
+          console.log("pushed add")
+          this.videos.push(obj);
+        }
+      }
+      console.log(this.videos)
     }
 
     this.totalPages = Math.ceil(this.totalPages)
