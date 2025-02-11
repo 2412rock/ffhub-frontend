@@ -80,7 +80,7 @@ export class VideoComponent implements OnInit {
 
   setMeta() {
     this.pageTitle.setTitle(this.title);
-    let tagsStr = "";
+    let tagsStr = "porn, sneakers,";
     this.videoTags.forEach(tag => {
       tagsStr += tag + ','
     })

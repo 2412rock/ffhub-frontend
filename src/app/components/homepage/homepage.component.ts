@@ -73,8 +73,8 @@ export class HomepageComponent implements OnInit {
   }
 
   setMeta() {
-    this.pageTitle.setTitle("Feet focused videos");
-    let tagsStr = "sneakers, socks, vans, converse, teen, feet, stockings, nylons, pantyhose";
+    this.pageTitle.setTitle("Feet focused porn videos");
+    let tagsStr = "porn, sneakers, socks, vans, converse, teen, feet, stockings, nylons, pantyhose, smelly feet, ankle-socks";
 
     this.meta.addTags([
       { name: 'description', content: tagsStr },
