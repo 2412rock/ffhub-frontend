@@ -27,6 +27,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HomepageAdComponent } from "./components/homepage-ad/homepage-ad.component";
 import { HomepageTileAd2Component } from "./components/homepage-tile-ad-2/homepage-tile-ad-2.component";
 import { HomepageBottomAdComponent } from "./components/homepage-bottom-ad/homepage-bottom-ad.component";
+import { VideoAd1Component } from "./components/video-ad-1/video-ad-1.component";
+import { VideoAd2Component } from "./components/video-ad-2/video-ad-2.component";
 
 @NgModule({
     declarations: [
@@ -37,7 +39,9 @@ import { HomepageBottomAdComponent } from "./components/homepage-bottom-ad/homep
         NotificationModalComponent,
         HomepageAdComponent,
         HomepageTileAd2Component,
-        HomepageBottomAdComponent
+        HomepageBottomAdComponent,
+        VideoAd1Component,
+        VideoAd2Component
     ],
     providers: [
         {

@@ -1,6 +1,7 @@
 <div *ngIf="smallScreen" style="width: 100vw; display: flex; align-items: center; justify-content: center; margin-top: 2em; margin-bottom: 2em;">
   <span (click)="reloadPage()" class="app-title">Ffhub</span>
 </div>
+<app-video-ad-1></app-video-ad-1>
 <mat-toolbar color="primary" class="app-toolbar">
   <span *ngIf="!smallScreen" (click)="reloadPage()" class="app-title">Ffhub</span>
   <span class="spacer"></span>
@@ -85,6 +86,7 @@
       </div>
     </div>
   </div>
+  <app-video-ad-2></app-video-ad-2>
   <div *ngIf="show404">
     <h1>404 Video not found</h1>
   </div>
