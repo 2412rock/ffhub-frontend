@@ -25,6 +25,8 @@ import { NotificationModalComponent } from "./components/modals/notification-mod
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HomepageAdComponent } from "./components/homepage-ad/homepage-ad.component";
+import { HomepageTileAd2Component } from "./components/homepage-tile-ad-2/homepage-tile-ad-2.component";
+import { HomepageBottomAdComponent } from "./components/homepage-bottom-ad/homepage-bottom-ad.component";
 
 @NgModule({
     declarations: [
@@ -33,7 +35,9 @@ import { HomepageAdComponent } from "./components/homepage-ad/homepage-ad.compon
         VideoComponent,
         AddVideoModalComponent,
         NotificationModalComponent,
-        HomepageAdComponent
+        HomepageAdComponent,
+        HomepageTileAd2Component,
+        HomepageBottomAdComponent
     ],
     providers: [
         {

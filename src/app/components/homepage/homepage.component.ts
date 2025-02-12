@@ -109,6 +109,13 @@ export class HomepageComponent implements OnInit {
           this.videos.push(result.data[currentVideoIndex]);
           currentVideoIndex++;
         }
+        else if(i % 3 === 0){
+          let obj = new VideoAndTags();
+          obj.videoId = -2;
+          
+          console.log("pushed add")
+          this.videos.push(obj);
+        }
         else{
           let obj = new VideoAndTags();
           obj.videoId = -1;

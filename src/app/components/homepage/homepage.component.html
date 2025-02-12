@@ -68,11 +68,15 @@
             <app-homepage-ad></app-homepage-ad>
           </mat-card-content>
         </mat-card>
+        <mat-card *ngIf="video.videoId === -2">
+          <app-homepage-tile-ad-2>
+            <app-homepage-ad></app-homepage-ad>
+          </app-homepage-tile-ad-2>
+        </mat-card>
       
       </mat-grid-tile>
       
     </mat-grid-list>
-    <app-homepage-ad></app-homepage-ad>
   </div>
   <div *ngIf="loading" style="width: 100%; height: 50vh; display: flex; align-items: center; justify-content: center;">
     <mat-spinner></mat-spinner>
@@ -92,4 +96,5 @@
       <span style="color: white;">Next &raquo;</span>
     </button>
   </div>
+  <app-homepage-bottom-ad></app-homepage-bottom-ad>
 </div>
