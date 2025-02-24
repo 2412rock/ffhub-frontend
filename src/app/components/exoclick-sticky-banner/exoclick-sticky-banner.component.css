@@ -1,0 +1,9 @@
+.ad-container {
+    width: 100%; /* or set a specific width */
+    height: auto; /* or set a specific height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px 0; /* Adjust margins as needed */
+    position: fixed;
+  }

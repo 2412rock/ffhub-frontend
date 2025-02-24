@@ -29,6 +29,9 @@ import { HomepageTileAd2Component } from "./components/homepage-tile-ad-2/homepa
 import { HomepageBottomAdComponent } from "./components/homepage-bottom-ad/homepage-bottom-ad.component";
 import { VideoAd1Component } from "./components/video-ad-1/video-ad-1.component";
 import { VideoAd2Component } from "./components/video-ad-2/video-ad-2.component";
+import { ExoclickBannerComponent } from "./components/exoclick-banner/exoclick-banner.component";
+import { ExoclickStickyBannerComponent } from "./components/exoclick-sticky-banner/exoclick-sticky-banner.component";
+import { ExoclickFullscreenComponent } from "./components/exoclick-fullscreen/exoclick-fullscreen.component";
 
 @NgModule({
     declarations: [
@@ -41,7 +44,11 @@ import { VideoAd2Component } from "./components/video-ad-2/video-ad-2.component"
         HomepageTileAd2Component,
         HomepageBottomAdComponent,
         VideoAd1Component,
-        VideoAd2Component
+        VideoAd2Component,
+        ExoclickBannerComponent,
+        ExoclickStickyBannerComponent,
+        ExoclickFullscreenComponent
+        
     ],
     providers: [
         {
@@ -57,29 +64,27 @@ import { VideoAd2Component } from "./components/video-ad-2/video-ad-2.component"
     ],
     bootstrap: [AppComponent],
     imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatGridListModule,
-        MatToolbarModule,
-        RouterModule.forRoot([]),
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-        MatAutocompleteModule,
-        MatChipsModule,
-        MatProgressSpinnerModule,
-        MatDialogModule,
-        MatListModule,
-        MatPaginatorModule
-
-    ]
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatToolbarModule,
+    RouterModule.forRoot([]),
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatListModule,
+    MatPaginatorModule]
 })
 export class AppModule { }
