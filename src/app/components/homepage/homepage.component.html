@@ -1,7 +1,7 @@
-<div style="display: flex; flex-direction: row;">
+
   <app-exoclick-banner></app-exoclick-banner>
   <app-exoclick-fullscreen></app-exoclick-fullscreen>
-</div>
+
 <div *ngIf="smallScreen" style="width: 100vw; display: flex; align-items: center; justify-content: center; margin-top: 2em; margin-bottom: 2em;">
   <span (click)="reloadPage()" class="app-title">Ffhub</span>
 </div>
@@ -100,7 +100,5 @@
       <span style="color: white;">Next &raquo;</span>
     </button>
   </div>
-  <div style="width: 80vw; height: 80vh; display: flex; align-items: center; justify-content: center;">
-    <!-- <app-exoclick-sticky-banner></app-exoclick-sticky-banner> -->
-  </div>
+  <app-exoclick-banner2></app-exoclick-banner2>
 </div>

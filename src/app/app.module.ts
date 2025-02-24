@@ -32,6 +32,7 @@ import { VideoAd2Component } from "./components/video-ad-2/video-ad-2.component"
 import { ExoclickBannerComponent } from "./components/exoclick-banner/exoclick-banner.component";
 import { ExoclickStickyBannerComponent } from "./components/exoclick-sticky-banner/exoclick-sticky-banner.component";
 import { ExoclickFullscreenComponent } from "./components/exoclick-fullscreen/exoclick-fullscreen.component";
+import { ExoclickBanner2Component } from "./components/exoclick-banner2/exoclick-banner2.component";
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import { ExoclickFullscreenComponent } from "./components/exoclick-fullscreen/ex
         VideoAd2Component,
         ExoclickBannerComponent,
         ExoclickStickyBannerComponent,
-        ExoclickFullscreenComponent
+        ExoclickFullscreenComponent,
+        ExoclickBanner2Component
         
     ],
     providers: [
