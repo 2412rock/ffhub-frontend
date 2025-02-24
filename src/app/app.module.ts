@@ -33,6 +33,7 @@ import { ExoclickBannerComponent } from "./components/exoclick-banner/exoclick-b
 import { ExoclickStickyBannerComponent } from "./components/exoclick-sticky-banner/exoclick-sticky-banner.component";
 import { ExoclickFullscreenComponent } from "./components/exoclick-fullscreen/exoclick-fullscreen.component";
 import { ExoclickBanner2Component } from "./components/exoclick-banner2/exoclick-banner2.component";
+import { ExoclickMobileFullscreenComponent } from "./components/exoclick-mobile-fullscreen/exoclick-mobile-fullscreen.component";
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { ExoclickBanner2Component } from "./components/exoclick-banner2/exoclick
         ExoclickBannerComponent,
         ExoclickStickyBannerComponent,
         ExoclickFullscreenComponent,
-        ExoclickBanner2Component
+        ExoclickBanner2Component,
+        ExoclickMobileFullscreenComponent
         
     ],
     providers: [
