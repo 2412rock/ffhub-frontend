@@ -25,8 +25,9 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 #copy certificates for https
-# COPY fullchain.pem /usr/share/certs/fullchain.pem 
-# COPY privatekey.pem /usr/share/certs/privatekey.pem 
+#copy certificates for https
+COPY fullchain.pem /usr/share/certs/fullchain.pem 
+COPY privkey.pem /usr/share/certs/privkey.pem 
 
 # Copy the built Angular app from the builder stage to the nginx web root directory
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
