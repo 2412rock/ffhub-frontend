@@ -80,7 +80,7 @@ export class VideoComponent implements OnInit {
 
   setMeta() {
     this.pageTitle.setTitle(this.title);
-    let tagsStr = "porn, sneakers, socks, vans, converse, teen, feet, stockings, nylons, pantyhose, smelly feet, ankle-socks, porn video, ameteur, petite, fuck, sex, hardcore, cowgirl, missionary, hd porn, teen porn, feet porn, socks porn, MILF";
+    let tagsStr = "porn, sneakers, socks, vans, converse, teen, feet, stockings, nylons, pantyhose, smelly feet, ankle-socks, porn video, ameteur, petite, fuck, sex, hardcore, cowgirl, missionary, hd porn, teen porn, feet porn, socks porn, MILF, dick, pussy, virgin, cum, creampie, anal, deepthraot, facial, fetish";
     this.videoTags.forEach(tag => {
       tagsStr += tag + ','
     })
